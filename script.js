@@ -1,13 +1,13 @@
 const recipes = {
-  "steintreppe": {
-    name: "Steintreppe",
-    img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5c/Stone_Stairs_JE2_BE2.png",
-    info: "6x Stein ➜ 4x Steintreppe"
+  "schwert": {
+    name: "Diamantschwert",
+    img: "diamond_sword.png",
+    info: "2x Diamant + 1x Stock ➜ Diamantschwert"
   },
-  "holzstufe": {
-    name: "Holzstufe",
-    img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e8/Oak_Slab_JE3_BE3.png",
-    info: "3x Holzplanken ➜ 6x Stufe"
+  "stufe": {
+    name: "Steinstufe",
+    img: "stone_slab.png",
+    info: "3x Stein ➜ 6x Steinstufen"
   }
 };
 
@@ -18,11 +18,11 @@ input.addEventListener("input", () => {
   const val = input.value.toLowerCase();
   const recipe = recipes[val];
   if (recipe) {
-    result.innerHTML = \`
-      <h2>\${recipe.name}</h2>
-      <p>\${recipe.info}</p>
-      <img src="\${recipe.img}" alt="\${recipe.name}" />
-    \`;
+    result.innerHTML = `
+      <h2>${recipe.name}</h2>
+      <p>${recipe.info}</p>
+      <img src="${recipe.img}" alt="${recipe.name}" style="width: 150px; margin-top: 10px;" />
+    `;
   } else {
     result.innerHTML = "<p>Kein Rezept gefunden 😕</p>";
   }
