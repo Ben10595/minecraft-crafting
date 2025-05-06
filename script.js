@@ -1,29 +1,24 @@
-const recipes = {
-  "schwert": {
-    name: "Diamantschwert",
-    img: "diamond_sword.png",
-    info: "2x Diamant + 1x Stock ➜ Diamantschwert"
+const craftingData = {
+  schwert: {
+    text: "2x Diamant + 1x Stock ➜ Diamantschwert",
+    bild: "diamond_sword.png",
   },
-  "stufe": {
-    name: "Steinstufe",
-    img: "stone_slab.png",
-    info: "3x Stein ➜ 6x Steinstufen"
-  }
+  stufe: {
+    text: "3x Stein ➜ 6x Steinstufen",
+    bild: "stone_slab.png",
+  },
 };
 
-const input = document.getElementById("search");
-const result = document.getElementById("result");
+document.getElementById("search").addEventListener("input", function () {
+  const input = this.value.toLowerCase();
+  const resultDiv = document.getElementById("result");
 
-input.addEventListener("input", () => {
-  const val = input.value.toLowerCase();
-  const recipe = recipes[val];
-  if (recipe) {
-    result.innerHTML = `
-      <h2>${recipe.name}</h2>
-      <p>${recipe.info}</p>
-      <img src="${recipe.img}" alt="${recipe.name}" style="width: 150px; margin-top: 10px;" />
-    `;
+  if (craftingData[input]) {
+    const item = craftingData[input];
+    resultDiv.innerHTML = `<p>${item.text}</p><img src="${item.bild}" alt="${input}" />`;
+  } else if (input === "") {
+    resultDiv.innerHTML = "";
   } else {
-    result.innerHTML = "<p>Kein Rezept gefunden 😕</p>";
+    resultDiv.innerHTML = "Kein Rezept gefunden 😢";
   }
 });
