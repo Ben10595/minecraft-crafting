@@ -1,21 +1,69 @@
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background: #1e1e1e;
+  background-color: #1e1e1e;
   color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  padding: 2rem;
 }
+
+h1 {
+  color: #00ff88;
+  margin-bottom: 2rem;
+}
+
 input {
-  padding: 10px;
-  font-size: 16px;
-  width: 300px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  width: 280px;
   border-radius: 8px;
   border: none;
-  margin-bottom: 20px;
+  outline: none;
+  margin-bottom: 2rem;
 }
-#result {
-  margin-top: 20px;
+
+.result {
+  margin-top: 1rem;
 }
-img {
-  width: 200px;
-  border-radius: 12px;
+
+.crafting {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #2c2c2c;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00ff8855;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #555;
+  margin: 2px;
+  background: #3a3a3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.cell img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.arrow {
+  font-size: 2rem;
+  margin: 1rem;
+  color: #00ff88;
+}
+
+.result img {
+  width: 64px;
+  margin-top: 1rem;
 }
