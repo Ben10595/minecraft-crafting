@@ -1,13 +1,41 @@
 const craftingData = {
   schwert: {
-    text: "2x Diamant + 1x Stock ➜ Diamantschwert",
-    bild: "diamond_sword.png",
+    name: "Diamond Sword",
+    grid: [
+      ["", "diamond.png", ""],
+      ["", "diamond.png", ""],
+      ["", "stick.png", ""],
+    ],
+    result: "diamond_sword.png",
   },
   stufe: {
-    text: "3x Stein ➜ 6x Steinstufen",
-    bild: "stone_slab.png",
+    name: "Stone Slab",
+    grid: [
+      ["", "", ""],
+      ["", "", ""],
+      ["stone.png", "stone.png", "stone.png"],
+    ],
+    result: "stone_slab.png",
   },
 };
+
+function renderGrid(grid, resultImg) {
+  let html = '<div class="crafting">';
+  grid.forEach(row => {
+    html += '<div class="row">';
+    row.forEach(cell => {
+      if (cell) {
+        html += `<div class="cell"><img src="${cell}" alt=""></div>`;
+      } else {
+        html += `<div class="cell"></div>`;
+      }
+    });
+    html += '</div>';
+  });
+  html += '</div><div class="arrow">➜</div>';
+  html += `<div class="result"><img src="${resultImg}" alt="Ergebnis" /></div>`;
+  return html;
+}
 
 document.getElementById("search").addEventListener("input", function () {
   const input = this.value.toLowerCase();
@@ -15,10 +43,13 @@ document.getElementById("search").addEventListener("input", function () {
 
   if (craftingData[input]) {
     const item = craftingData[input];
-    resultDiv.innerHTML = `<p>${item.text}</p><img src="${item.bild}" alt="${input}" />`;
+    resultDiv.innerHTML = `
+      <h2>${item.name}</h2>
+      ${renderGrid(item.grid, item.result)}
+    `;
   } else if (input === "") {
     resultDiv.innerHTML = "";
   } else {
-    resultDiv.innerHTML = "Kein Rezept gefunden 😢";
+    resultDiv.innerHTML = "❌ Kein Rezept gefunden";
   }
 });
