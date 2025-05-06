@@ -19,22 +19,21 @@ const craftingData = {
   },
 };
 
-function renderGrid(grid, resultImg) {
-  let html = '<div class="crafting">';
-  grid.forEach(row => {
-    html += '<div class="row">';
-    row.forEach(cell => {
-      if (cell) {
-        html += `<div class="cell"><img src="${cell}" alt=""></div>`;
-      } else {
-        html += `<div class="cell"></div>`;
-      }
-    });
-    html += '</div>';
-  });
-  html += '</div><div class="arrow">➜</div>';
-  html += `<div class="result"><img src="${resultImg}" alt="Ergebnis" /></div>`;
-  return html;
+function renderCrafting(item) {
+  const gridHTML = item.grid.map(row =>
+    row.map(cell =>
+      `<div class="cell">${cell ? `<img src="${cell}">` : ""}</div>`
+    ).join("")
+  ).join("");
+
+  return `
+    <h2>${item.name}</h2>
+    <div class="crafting-container">
+      <div class="grid">${gridHTML}</div>
+      <div class="arrow">➜</div>
+      <div class="result-box"><img src="${item.result}" /></div>
+    </div>
+  `;
 }
 
 document.getElementById("search").addEventListener("input", function () {
@@ -42,11 +41,7 @@ document.getElementById("search").addEventListener("input", function () {
   const resultDiv = document.getElementById("result");
 
   if (craftingData[input]) {
-    const item = craftingData[input];
-    resultDiv.innerHTML = `
-      <h2>${item.name}</h2>
-      ${renderGrid(item.grid, item.result)}
-    `;
+    resultDiv.innerHTML = renderCrafting(craftingData[input]);
   } else if (input === "") {
     resultDiv.innerHTML = "";
   } else {
